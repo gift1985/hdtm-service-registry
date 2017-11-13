@@ -1,0 +1,31 @@
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: holdtime5350606
+spring:
+  application:
+    name: hdtm-service-registry
+---
+spring:
+  profiles: peer1
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: peer1
+  client:
+    service-url: 
+      defaultZone: http://admin:holdtime5350606@peer2:8762/eureka/
+---
+spring:
+  profiles: peer2
+server:
+  port: 8762
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    service-url:
+      defaultZone: http://admin:holdtime5350606@peer1:8761/eureka/
